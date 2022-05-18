@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <style>
+        main{
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+
+        }
+
+        #userName{
+            color:red;
+        }
+        
+        input{
+            width: 200px;
+            margin-bottom: 30px;
+            
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+     </style>
+     <!-- cosas -->
+     <main>
+     <h1>Resetear Contraseña</h1>
+
+     <form action="/usuarios/reset/<%= datos.token%>" method="post">
+        <div>
+            <label for="password_1">Contraseña Nueva</label>
+            <input type="password" maxlength="15" placeholder="Introdusca la nueva contraseña" autocomplete="Contraseña Nueva" name="password_1" autofocus>
+        </div>
+        <div>
+            <label for="password_2">Repetir contraseña</label>
+            <input type="password" maxlength="15" placeholder="Reescriba la contraseña" autocomplete="Repita la contraseña" name="password_2" autofocus>
+        </div>
+        <input type="submit" value="Enviar">
+        <% if(datos.errores){ %>
+            <%for(let i = 0; i < datos.errores.length; i++) {%>
+                <p><%= datos.errores[i].msg%></p>
+            <% } %>
+        <% } %>
+    </form>
+
+    </main>
+</body>
+</html>
